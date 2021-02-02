@@ -5,6 +5,7 @@ import 'package:SuperMario/entities/mario/mario.dart';
 import 'package:SuperMario/entities/mushroom.dart';
 import 'package:SuperMario/utils/button.dart';
 import 'package:SuperMario/utils/field.dart';
+import 'package:SuperMario/utils/hud.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,11 +25,12 @@ class _WorldState extends State<World> {
   double time = 0;
   double height = 0;
   double initalHeight = marioY;
+  double value = 0.10;
   String direction = 'right';
   bool midrun = false;
   bool midjump = false;
   var gameFont = GoogleFonts.pressStart2p(
-    textStyle: TextStyle(color: Colors.white, fontSize: 20),
+    textStyle: TextStyle(color: Colors.white, fontSize: 15),
   );
 
   void checkIfAteMushroom() {
@@ -81,9 +83,9 @@ class _WorldState extends State<World> {
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       checkIfAteMushroom();
       // checkPoint();
-      if (MyButton().userIsHoldingButton() == true && marioX + 0.01 < 1) {
+      if (MyButton().userIsHoldingButton() == true && marioX + 0.03 < 1) {
         setState(() {
-          marioX += 0.01;
+          marioX += 0.03;
           midrun = !midrun;
         });
       } else {
@@ -98,9 +100,9 @@ class _WorldState extends State<World> {
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       checkIfAteMushroom();
       // checkPoint();
-      if (MyButton().userIsHoldingButton() == true && marioX - 0.01 > -1) {
+      if (MyButton().userIsHoldingButton() == true && marioX - 0.03 > -1) {
         setState(() {
-          marioX -= 0.01;
+          marioX -= 0.03;
           midrun = !midrun;
         });
       } else {
@@ -148,27 +150,51 @@ class _WorldState extends State<World> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      // Column(
+                      //   children: [
+                      //     Text('Shenn', style: gameFont),
+                      //     SizedBox(height: 10),
+                      //     Text('0000', style: gameFont)
+                      //   ],
+                      // ),
                       Column(
                         children: [
-                          Text('Shenn', style: gameFont),
-                          SizedBox(height: 10),
-                          Text('0000', style: gameFont)
+                          Text("Mario", style: gameFont),
+                          Container(
+                            alignment: Alignment(1, 1),
+                            child: Hud(value: value),
+                          ),
                         ],
                       ),
                       Column(
                         children: [
-                          Text('FAVELA RIO', style: gameFont),
-                          SizedBox(height: 10),
-                          Text('1-1', style: gameFont)
+                          Container(
+                            alignment: Alignment(1, 1),
+                            child: Text("K.O", style: gameFont),
+                          ),
                         ],
                       ),
                       Column(
                         children: [
-                          Text('TIME', style: gameFont),
-                          SizedBox(height: 10),
-                          Text('9999', style: gameFont)
+                          RaisedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          Text("Shenn", style: gameFont),
+                          Container(
+                            alignment: Alignment(1, 1),
+                            child: Hud(value: value),
+                          ),
                         ],
                       ),
+                      // Column(
+                      //   children: [
+                      //     Text('TIME', style: gameFont),
+                      //     SizedBox(height: 10),
+                      //     Text('9999', style: gameFont)
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),
