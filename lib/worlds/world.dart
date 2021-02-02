@@ -8,12 +8,12 @@ import 'package:SuperMario/utils/field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
+class World extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WorldState createState() => _WorldState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WorldState extends State<World> {
   static double marioX = 0;
   static double marioY = 1;
   double marioSize = 50;
@@ -31,13 +31,6 @@ class _HomePageState extends State<HomePage> {
     textStyle: TextStyle(color: Colors.white, fontSize: 20),
   );
 
-  // double toPixel() {
-  //   double width = MediaQuery.of(context).size.width;
-  //   double pixelPosition = width * ((marioX + 1) / 2);
-  //   print(pixelPosition);
-  //   return pixelPosition;
-  // }
-
   void checkIfAteMushroom() {
     if (sqrt(pow(marioX - mushroomX, 2) + pow(marioY - mushroomY, 2)) < 0.05) {
       setState(() {
@@ -47,13 +40,13 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void checkPoint() {
-    if (sqrt(pow(marioX - endFieldX, 2) + pow(marioY - endFieldY, 2)) < 0.05) {
-      setState(() {
-        print('deu certo');
-      });
-    }
-  }
+  // void checkPoint() {
+  //   if (sqrt(pow(marioX - endFieldX, 2) + pow(marioY - endFieldY, 2)) < 0.05) {
+  //     setState(() {
+  //       print('deu certo');
+  //     });
+  //   }
+  // }
 
   void preJump() {
     time = 0;
@@ -85,10 +78,9 @@ class _HomePageState extends State<HomePage> {
 
   void moveRight() {
     direction = 'right';
-
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       checkIfAteMushroom();
-      checkPoint();
+      // checkPoint();
       if (MyButton().userIsHoldingButton() == true && marioX + 0.01 < 1) {
         setState(() {
           marioX += 0.01;
@@ -103,10 +95,9 @@ class _HomePageState extends State<HomePage> {
   void moveLeft() {
     checkIfAteMushroom();
     direction = 'left';
-
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       checkIfAteMushroom();
-      checkPoint();
+      // checkPoint();
       if (MyButton().userIsHoldingButton() == true && marioX - 0.01 > -1) {
         setState(() {
           marioX -= 0.01;

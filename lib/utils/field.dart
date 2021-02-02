@@ -6,7 +6,7 @@ class Field extends StatelessWidget {
     return Container(
       height: 500,
       width: 1,
-      color: Colors.red,
+      color: Colors.transparent
     );
   }
 }
