@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:SuperMario/button.dart';
-import 'package:SuperMario/jumpingmario.dart';
-import 'package:SuperMario/mario.dart';
-import 'package:SuperMario/mushroom.dart';
+import 'package:SuperMario/entities/mario/jumpingmario.dart';
+import 'package:SuperMario/entities/mario/mario.dart';
+import 'package:SuperMario/entities/mushroom.dart';
+import 'package:SuperMario/utils/button.dart';
 import 'package:SuperMario/utils/field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
